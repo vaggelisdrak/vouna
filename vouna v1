@@ -1,0 +1,59 @@
+vounalist=[]
+def vouna():
+    global rank
+    rank =0
+    with open('bouna.txt','r',encoding='utf-8') as f:
+        vouna =f.read()
+    for line in vouna.split('\n'):
+        rank+=1
+        line= line.split('\t')
+        name=line[0]
+        height=line[1]
+        place=line[2]
+        vounalist.append([name,height,place,rank])
+        for vouno in vounalist:
+            vouno[0]=vouno[0].lower()
+            vouno[0] =vouno[0].replace('έ','ε')
+            vouno[0] =vouno[0].replace('ί','ι')
+            vouno[0] =vouno[0].replace('ά','α')
+            vouno[0] =vouno[0].replace('ό','ο')
+            vouno[0] =vouno[0].replace('ύ','υ')
+            vouno[0] =vouno[0].replace('ή','η')
+            vouno[0] =vouno[0].replace('ώ','ω')
+            vouno[0] =vouno[0].replace('ΰ','υ')
+            vouno[0] =vouno[0].replace('ϊ','ι')
+            vouno[1] =vouno[1].replace('.','')
+    return vounalist
+    return rank
+
+def compare(x):
+    diafora1 = 2918-int(x)
+    diafora2 = 8848-int(x)
+    if diafora1 != 0:
+        print('---> ειναι '+ str(diafora1) +' μετρα μικροτερο απο το ψηλοτερο βουνο της ελλαδας,τον Ολυμπο')
+    else:
+        print('---> ειναι το ψηλοτερο βουνο της ελλαδας')
+    print('---> ειναι '+ str(diafora2) +' μετρα μικροτερο απο το ψηλοτερο βουνο του κοσμου,το Εβερεστ')
+
+def erotisi():
+    #print(vounalist)
+    print(145*'-')
+    while True:
+        x =str(input('για ποιο βουνο θες να μαθεις πληροφοριες? '))
+        found=0
+        if not x:
+            break
+        for vouno in vounalist:
+            if x == str(vouno[0]) or x[:5] == str(vouno[0][:5]):#αν ειναι σωστο  μεχρι και το 5ο γραμμα(0,1,2)
+                print('Καταταξη:'+str(vouno[-1]-1)+'  Το ορος '+str(vouno[0].upper())+' ειναι '+str(vouno[1])+' μετρα '+'και βρισκεται στο/στη '+str(vouno[2]+'\n'))
+                v =vouno[1]
+                compare(v)
+                print(145*'-')
+                found+=1
+        if not found:
+            print('το ορος {} δεν ανηκει στα ελληνικα βουνα ή ειναι χαμηλοτερο απο 1000μ'.format(x))
+
+if __name__ == "__main__":
+    vouna()
+    erotisi()
+
